@@ -7,19 +7,19 @@
 // };
 
 //Sequelize references the standard Library
-var Sequelize = require("sequelize");
+// var Sequelize = require("sequelize");
 
 //sequalize refrences the conneciton to the db
-var sequelize = require("../config/connection.js");
+// var sequelize = require("../config/connection.js");
 
 //creating USER model TODO UPDATE THIS
-var User = sequelize.define("user", {
-    something: User,
+// var User = sequelize.define("user", {
+//     something: User,
 
-});
+// });
 
 //sync with DB
-User.sync();
+// User.sync();
 
 //makes the user model available for other files and makes a table. 
-module.exports = User;
+// module.exports = User;
