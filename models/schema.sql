@@ -1,5 +1,10 @@
-DROP DATABASE IF EXISTS exampledb;
-CREATE DATABASE exampledb;
+--drops the user db--
+DROP DATABASE IF EXISTS usersDB;
+CREATE DATABASE usersDB; 
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
+USE usersDB;
+
+DROP DATABASE IF EXISTS topScoresDB;
+CREATE DATABASE topScoresDB; 
+
+USE topScoresDB;
