@@ -21,8 +21,6 @@ var register = function(event) {
         return;
     }
 
-    // window.location.href ="";
-
     // Code goes here to send request to server.
     // $.post("/api/signup", credentials, function() {
     //     If they credentails were good redirect user to instruction page

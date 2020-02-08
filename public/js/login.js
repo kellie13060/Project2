@@ -19,8 +19,6 @@ var login = function(event) {
         return;
     }
 
-    window.location.href ="";
-
     // Code goes here to send request to server.
     // $.post("/api/login", credentials, function() {
     //     If they credentails were good redirect user to instruction page
