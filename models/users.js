@@ -1,25 +1,39 @@
-// module.exports = function(sequelize, DataTypes) {
-//   var Example = sequelize.define("Example", {
-//     text: DataTypes.STRING,
-//     description: DataTypes.TEXT
-//   });
-//   return Example;
-// };
+var bcrypt = require("bcryptjs");
 
-//Sequelize references the standard Library
-// var Sequelize = require("sequelize");
+module.exports = function (sequelize, DataTypes) {
+    var User = sequelize.define("User", {
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1, 25]
+            }
+        },
+        email: {
+            type: DataTypes.STRING,
+            isUnique: true,
+            allowNull: false,
+            validate: {
+                isEmail: trie
+            }
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [7, 25]
+            }
+        }
+    });
 
-//sequalize refrences the conneciton to the db
-// var sequelize = require("../config/connection.js");
+    User.prototype.validPassword = function (password) {
+        return bcrypt.compareSync(password, this.password);
+    };
+    // Hooks are automatic methods that run during various phases of the User Model lifecycle
+    // In this case, before a User is created, we will automatically hash their password
 
-//creating USER model TODO UPDATE THIS
-// var User = sequelize.define("user", {
-//     something: User,
-
-// });
-
-//sync with DB
-// User.sync();
-
-//makes the user model available for other files and makes a table. 
-// module.exports = User;
+    User.hook("beforeCreate", function (user) {
+        user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+    });
+    return User;
+};
