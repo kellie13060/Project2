@@ -1,4 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
+    //adding a score using sequelize
     var Score = sequelize.define("Score", {
         score: {
             type: DataTypes.INTEGER,

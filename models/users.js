@@ -1,5 +1,5 @@
 var bcrypt = require("bcryptjs");
-
+//adding a user using sequelize
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
         username: {
