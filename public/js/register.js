@@ -8,22 +8,26 @@ var $password = $("#password");
 function register(event) {
   event.preventDefault();
 
-  console.log("register button clicked!");
-
-  credentials({
+  credentials = {
     username: $name.val().trim(),
     email: $email.val().trim(),
     password: $password.val().trim()
-  });
+  };
 
-  if (credentials.name.val === "") {
-    alert("Must provide a name");
+  console.log("register button clicked!", credentials);
+
+  if (
+    credentials.username === "" ||
+    credentials.email === "" ||
+    credentials.password === ""
+  ) {
+    alert("Must provide name, email, and password");
   } else {
     return true;
   }
 } // Add event listener to submit button
 $registerBtn.on("click", register);
 
-function credentials(userData) {
-  $.post("/api/signup", userData);
-}
+// function credentials(userData) {
+//   $.post("/api/signup", userData);
+// }
