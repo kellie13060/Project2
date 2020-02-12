@@ -16,12 +16,12 @@ function register(event) {
     password: $password.val().trim()
   });
 
-  if (!(credentials.name && credentials.email && credentials.password)) {
-    alert("You must supply a name, email and password");
-    return;
+  if (credentials.name.val === "") {
+    alert("Must provide a name");
+  } else {
+    return true;
   }
-}
-// Add event listener to submit button
+} // Add event listener to submit button
 $registerBtn.on("click", register);
 
 function credentials(userData) {
