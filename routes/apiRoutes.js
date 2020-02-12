@@ -59,7 +59,7 @@ module.exports = function(app) {
 
   // Run the axios.get function...
   // The axios.get function takes in a URL and returns a promise (just like $.ajax)
-  $("#start-game").on("click", function() {
+  app.get("/api/getTriviaQuestions", function() {
     axios
       .get("https://opentdb.com/api.php?amount=5")
       .then(function(response) {
