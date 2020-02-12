@@ -8,7 +8,6 @@ var $password = $("#password");
 function register(event) {
   event.preventDefault();
 
-
   credentials = {
     username: $name.val().trim(),
     email: $email.val().trim(),
