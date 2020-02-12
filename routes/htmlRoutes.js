@@ -8,6 +8,9 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
+  app.get("/game", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/game.html"));
+  });
   //   // Load example page and pass in an example by id
   //   app.get("/example/:id", function (req, res) {
   //     db.Example.findOne({
@@ -21,8 +24,8 @@ module.exports = function(app) {
   //     });
   //   });
 
-  //   // Render 404 page for any unmatched routes
-  //   app.get("*", function (req, res) {
-  //     res.render("404");
-  //   });
+  // Render 404 page for any unmatched routes
+  app.get("*", function(req, res) {
+    res.render("404");
+  });
 };
