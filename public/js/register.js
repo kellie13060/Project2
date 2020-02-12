@@ -10,7 +10,7 @@ function register(event) {
 
   console.log("register button clicked!");
 
-  getCredentials({
+  credentials({
     name: $name.val().trim(),
     email: $email.val().trim(),
     password: $password.val().trim()
@@ -24,6 +24,6 @@ function register(event) {
 // Add event listener to submit button
 $registerBtn.on("click", register);
 
-function getCredentials(userData) {
+function credentials(userData) {
   $.post("/api/signup", userData);
 }
