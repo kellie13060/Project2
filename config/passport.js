@@ -15,7 +15,7 @@ passport.use(
     },
     function(email, password, done) {
       // When a user tries to sign in this code runs
-      db.User.findOne({
+      db.user.findOne({
         where: {
           email: email
         }

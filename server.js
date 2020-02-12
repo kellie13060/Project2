@@ -20,6 +20,9 @@ app.use(
 );
 app.use(express.json());
 app.use(express.static("public"));
+app.use(session({ secret: "keyboard cat" }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // // Handlebars
 // app.engine(
