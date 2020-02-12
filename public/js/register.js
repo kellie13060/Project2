@@ -11,7 +11,7 @@ function register(event) {
   console.log("register button clicked!");
 
   credentials({
-    name: $name.val().trim(),
+    username: $name.val().trim(),
     email: $email.val().trim(),
     password: $password.val().trim()
   });
