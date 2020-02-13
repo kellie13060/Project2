@@ -26,7 +26,9 @@ function register(event) {
     credentials(userCredentials);
     return true;
   }
-} // Add event listener to submit button
+}
+
+// Add event listener to submit button
 $registerBtn.on("click", register);
 
 function credentials(userCredentials) {

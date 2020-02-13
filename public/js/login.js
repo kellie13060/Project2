@@ -9,23 +9,23 @@ var login = function(event) {
 
   console.log("login button clicked");
 
-  var credentials = {
+  var loginCredentials = {
     email: $email.val().trim(),
     password: $password.val().trim()
   };
 
-  if (!(credentials.email && credentials.password)) {
-    alert("You must supply a Username and Password");
-    return;
+  if (loginCredentials.email === "" || loginCredentials.password === "") {
+    alert("Must provide email and password");
+  } else {
+    credentials(loginCredentials);
+    return true;
   }
-
-  // Code goes here to send request to server.
-  // $.post("/api/login", credentials, function() {
-  //     If they credentails were good redirect user to instruction page
-  //     window.location.href = "/intruction";
-  //     Else keep them at the login page
-  // });
 };
 
 // Add event listener to submit button
 $loginBtn.on("click", login);
+
+// Login Post Route
+function credentials(loginCredentials) {
+  $.post("/api/login", loginCredentials);
+}
