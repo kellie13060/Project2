@@ -6,9 +6,8 @@ var $password = $("#password");
 // login is called whenever the login button is checked
 var login = function(event) {
   event.preventDefault();
-
+  window.location.href = "/instruction";
   console.log("login button clicked");
-
   var loginCredentials = {
     email: $email.val().trim(),
     password: $password.val().trim()
