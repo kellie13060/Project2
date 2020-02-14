@@ -1,61 +1,72 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function() {
-  var seconds = 60;
-  var intervalId;
-  var correct = 0;
-  var timeOut;
 
-  $("#start-game").on("click", function(event) {
+var seconds = 60;
+var intervalId;
+var correct = 0;
+var timeOut;
+
+$(function () {
+
+
+  $("#start-game").on("click", function (event) {
     console.log("Button clicked");
 
     // hide button
     $("#start-game").hide();
+    $(".game").show();
 
     $.ajax("/api/getTriviaQuestions", {
       type: "GET"
-    }).then(function(res) {
+    }).then(function (res) {
+      console.log(res);
       // loop through the response results and assign variables
-      var test = "True";
       for (var i = 0; i < res.results.length; i++) {
         var difficulty = res.results[i].difficulty;
         var question = res.results[i].question;
+        question = question.replace(/&quot;/g, '\"');
+        question = question.replace(/&#039;/g, "\'");
         var correctAnswer = res.results[i].correct_answer;
-        var incorrectAnswer;
-
-        if (test === correctAnswer) {
-          incorrectAnswer = "False";
-        } else {
-          incorrectAnswer = "True";
-        }
 
         // Build the question
-        var emptyDiv = $(".empty-div");
+        var gameDiv = $(".game-div");
         var questionDiv = $("<div>");
         questionDiv.attr("class", "container");
         var questionH1 = $("<h1>");
         questionH1.text(question);
         questionDiv.append(questionH1);
 
-        // Build the answer buttons
+        // Build the buttons
         var btnDiv = $("<div>");
         btnDiv.attr("class", "container");
-        var correctAnswerBtn = $("<button>");
-        correctAnswerBtn.attr("id", "correct");
-        correctAnswerBtn.text(correctAnswer);
-        btnDiv.append(correctAnswerBtn);
-
-        var btnDiv2 = $("<div>");
-        btnDiv2.attr("class", "container");
-        var incorrectAnswerBtn = $("<button>");
-        incorrectAnswerBtn.attr("id", "incorrect");
-        incorrectAnswerBtn.text(incorrectAnswer);
-        btnDiv2.append(incorrectAnswerBtn);
-
-        // Append to the page
-        emptyDiv.append(questionDiv, btnDiv, btnDiv2);
+        btnDiv.css("padding", "20px");
+        // True button
+        var trueAnswerBtn = $("<button>");
+        trueAnswerBtn.css("margin", "0px 15px 0px 15px");
+        trueAnswerBtn.attr("class", "button is-medium answer");
+        trueAnswerBtn.attr("id", "t" + i);
+        trueAnswerBtn.text("True");
+        // False button
+        var falseAnswerBtn = $("<button>");
+        falseAnswerBtn.css("margin", "0px 15px 0px 15px");
+        falseAnswerBtn.attr("class", "button is-medium answer");
+        falseAnswerBtn.attr("id", "f" + i);
+        falseAnswerBtn.text("False");
+        // Add correct id to the right button
+        if (correctAnswer === "True") {
+          trueAnswerBtn.attr("value", "correct");
+        } else {
+          falseAnswerBtn.attr("value", "correct");
+        }
+        // add buttons to btnDiv
+        btnDiv.append(trueAnswerBtn);
+        btnDiv.append(falseAnswerBtn);
+        // Append btnDiv to the page on emptyDiv
+        gameDiv.prepend(questionDiv, btnDiv);
       }
     });
   });
+
+  // Time Converter
   function timeConverter(t) {
     var minutes = Math.floor(t / 60);
     var seconds = t - minutes * 60;
@@ -69,4 +80,21 @@ $(function() {
     }
     return minutes + ":" + seconds;
   }
+});
+
+// Event handler for when a True/False button is clicked
+$(".game-div").on("click", ".answer", function() {
+  var buttonId = $(this)[0].id;
+  console.log(buttonId);
+  if (buttonId.includes("t")) {
+    buttonId = buttonId.replace("t", "f");
+  } else {
+    buttonId = buttonId.replace("f", "t");
+  }
+  $("#" + buttonId).removeClass("is-info");
+  $(this).addClass("is-info");
+});
+
+$(".submit").on("click", ".game", function() {
+  console.log(correct);
 });
