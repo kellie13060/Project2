@@ -65,7 +65,7 @@ module.exports = function(app) {
   // The axios.get function takes in a URL and returns a promise (just like $.ajax)
   app.get("/api/getTriviaQuestions", function(req, res) {
     axios
-      .get("https://opentdb.com/api.php?amount=5")
+      .get("https://opentdb.com/api.php?amount=5&category=14&type=boolean")
       .then(function(response) {
         // If the axios was successful...
         // Then log the body from the site!
