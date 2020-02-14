@@ -12,7 +12,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/game.html"));
   });
 
-  app.get("/login", function(req, res) {
+  app.get("/instruction", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/instruction.html"));
   });
 };

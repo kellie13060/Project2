@@ -15,7 +15,7 @@ function register(event) {
   };
 
   console.log("register button clicked!", userCredentials);
-
+  window.location.href = "/instruction";
   if (
     userCredentials.username === "" ||
     userCredentials.email === "" ||
