@@ -1,38 +1,17 @@
-# Project Starter
+# TV Trivia
 
-In this activity we will add the provided boilerplate to group project repos.
+In this project our team developed an app that lets a user log in and get a score from answering 5 triva questions. 
 
-## Instructions
+## Technologies Used
 
-* Only one member of each group should complete this activity while the others watch.
+Passport.js: Allows a user to create an account or login
+bcrypt was used to hash out the password when stored in the SQL Database
+Obtain the questions from a Trivia API
+Site is deloyed on Heroku: https://project2kst.herokuapp.com/
+Bulma was used for UI Design
 
-* Copy the entire [Unsolved](Unsolved) folder to another location on your computers &mdash; wherever you would like your local copy of the group project to be.
+## Future Imporvements
 
-* Rename the copied "Unsolved" folder to the name of your project.
-
-* Open the copied project folder's `package.json` file and change its `name` property to the name of your project.
-
-* CD to the root of the copied project folder with your terminal and run the following commands:
-
-  ```
-  git init
-  git add .
-  git commit -m "Initial commit"
-  ```
-
-* Then copy the GitHub repo's remote SSH URL (the same URL you'd use to clone the repo).
-
-* Run the following commands in your terminal, replacing <remote-url> with your GitHub repo's remote SSH URL.
-
-  ```
-  git remote add origin <remote-url>
-  git push origin master
-  ```
-
-* If completed successfully you should see all of the files uploaded to GitHub.
-
-* All other group members should now clone the repo.
-
-* Discuss as a group:
-
-  * How would you now add changes to this project?
+Logout Feature
+Leader Board
+Live online play
